@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:working_with_api/ui_for_api.dart';
+import 'package:working_with_api/ui_for_movie_detail.dart';
 
 import 'fetch_api.dart';
 
@@ -33,7 +35,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FetchApi(),
+      home:  MovieDetailUi(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
