@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:working_with_api/api_service.dart';
+import 'package:working_with_api/ui_for_movie_detail.dart';
 
 //Taught By Sir Abdul Basit.
 class FetchApiData extends StatefulWidget {
@@ -36,14 +37,25 @@ class _FetchApiDataState extends State<FetchApiData> {
                 List movieData = map["tv_shows"];
 
                 return ListView.builder(
+                  scrollDirection: Axis.horizontal,
                     itemCount: movieData.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage("${movieData[index]["image_thumbnail_path"]}"),
-                        ),
-                        title: Text("Name: ${movieData[index]["name"]}"),
-                        subtitle: Text("Start date : ${movieData[index]["start_date"]}"
+                    int movieId = movieData[index]["id"];
+                      return GestureDetector(
+                        onTap: (){
+                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${movieData[index]["id"]}")));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailUi(movieID: movieId),));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(20),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image(
+                                image: NetworkImage("${movieData[index]["image_thumbnail_path"]}"),
+                              fit: BoxFit.contain,
+                              height: 200,
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -55,3 +67,11 @@ class _FetchApiDataState extends State<FetchApiData> {
     );
   }
 }
+// ListTile(
+// leading: CircleAvatar(
+// backgroundImage: NetworkImage("${movieData[index]["image_thumbnail_path"]}"),
+// ),
+// title: Text("Name: ${movieData[index]["name"]}"),
+// subtitle: Text("Start date : ${movieData[index]["start_date"]}"
+// ),
+// );

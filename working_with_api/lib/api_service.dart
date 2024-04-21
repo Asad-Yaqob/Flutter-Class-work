@@ -13,6 +13,20 @@ class MyApiService {
     else {
       print(response.reasonPhrase);
     }
+  }
+
+  static Future getSpecificData(id) async{
+    var request = http.Request('GET', Uri.parse('https://www.episodate.com/api/show-details?q=$id'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      return result;
+    }
+    else {
+      print(response.reasonPhrase);
+    }
 
   }
 }
