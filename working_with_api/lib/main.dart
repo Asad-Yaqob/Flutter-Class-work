@@ -3,6 +3,7 @@ import 'package:working_with_api/ui_for_api.dart';
 import 'package:working_with_api/ui_for_movie_detail.dart';
 
 import 'fetch_api.dart';
+import 'movie_detail_ui.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  FetchApiData(),
+      home:  MovieUi(),
       debugShowCheckedModeBanner: false,
     );
   }
